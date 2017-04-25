@@ -16,12 +16,13 @@ get_header(); ?>
 
 	<?php while ( have_posts() ) : the_post(); ?>
 
-	<?php if ( has_post_thumbnail( $post->ID ) ): ?>
-	<?php $image_url = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large' )[0]; ?>
+	<?php if ( has_post_thumbnail( $post->ID ) ) {
+        $image_url = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large' )[0];
+    } else {
+        $image_url = get_template_directory_uri() . '/img/banniere-default.jpg';
+    } ?>
+    
     <div id="banniere" style="background-image: url(<?php echo $image_url; ?>)">
-    <?php else: ?>
-    <div id="banniere" style="background-image: url(<?php echo get_template_directory_uri(); ?>/img/banniere.jpg)">
-    <?php endif; ?>
     	<h1 class="page-title"><?php the_title(); ?></h1>
     </div>
 
