@@ -2,11 +2,9 @@
    Reset
    ========================================================================== */
 
-*, *:before, *:after { margin: 0; padding: 0; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+*, *:before, *:after { margin: 0; padding: 0; box-sizing: border-box; }
 
 html, button, input, select, textarea { color: #000; font: normal 1em/1.2 Arial, Helvetica, sans-serif; }
-
-::-moz-selection { background: #b3d4fc; text-shadow: none; }
 ::selection { background: #b3d4fc; text-shadow: none; }
 
 h1, h2, h3, h4, h5, h6 { font-weight: normal; font-size: 100%; }
@@ -19,9 +17,31 @@ img { display: inline-block; vertical-align: middle; max-width: 100%; height: au
 
 fieldset { border: 0; margin: 0; padding: 0; }
 
-input, textarea, select, button { outline: none; -webkit-box-shadow: none; box-shadow: none; }
+input, textarea, select, button { outline: none; box-shadow: none; }
 
-textarea { resize: vertical; }
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="url"],
+input[type="number"],
+input[type="reset"],
+input[type="button"],
+input[type="submit"],
+input[type="search"],
+textarea,
+button { -webkit-appearance: none; -moz-appearance: none; }
+
+textarea { resize: none; }
+
+input[type="reset"],
+input[type="button"],
+input[type="submit"],
+button {
+    cursor: pointer;
+}
+
+button { -webkit-tap-highlight-color: transparent; }
 
 a, a:focus { text-decoration: none; outline: none; }
 
@@ -42,6 +62,16 @@ ul { list-style: none; }
 .cf { *zoom: 1; }
 
 .clear { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+
+.unselectable {
+    /* For Opera and <= IE9, we need to add unselectable="on" attribute onto each element */
+    /* Check this site for more details: http://help.dottoro.com/lhwdpnva.php */ /* These user-select properties are inheritable, used to prevent text selection */
+    -ms-user-select: none; /* From IE10 only */
+    user-select: none; /* Not valid CSS yet, as of July 2012 */
+
+    -webkit-user-drag: none; /* Prevents dragging of images/divs etc */
+    user-drag: none;
+}
 
 /* ==========================================================================
    Browser Upgrade Prompt

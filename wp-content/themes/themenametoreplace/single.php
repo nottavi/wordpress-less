@@ -11,13 +11,13 @@ get_header(); ?>
 
 	<?php while ( have_posts() ) : the_post(); ?>
     
-    <h1 class="page-title"><?php the_title(); ?></h1>
+		<h1 class="page-title"><?php the_title(); ?></h1>
 
-	<article id="article">
-    	<div class="wysiwyg-content">
-	        <?php the_content(); ?>
-    	</div>
-	</article>
+		<article id="article">
+			<div class="wysiwyg-content">
+				<?php the_content(); ?>
+			</div>
+		</article>
 
 	<?php endwhile; ?>
 

@@ -63,13 +63,13 @@ function theme_name_to_replace_setup() {
 	 * Enable support for Post Formats.
 	 * See https://developer.wordpress.org/themes/functionality/post-formats/
 	 */
-	add_theme_support( 'post-formats', array(
-		'aside',
-		'image',
-		'video',
-		'quote',
-		'link',
-	) );
+	// add_theme_support( 'post-formats', array(
+	// 	'aside',
+	// 	'image',
+	// 	'video',
+	// 	'quote',
+	// 	'link',
+	// ) );
 }
 endif;
 add_action( 'after_setup_theme', 'theme_name_to_replace_setup' );
@@ -149,3 +149,10 @@ remove_action('wp_head', 'print_emoji_detection_script', 7);
 remove_action('admin_print_scripts', 'print_emoji_detection_script');
 remove_action('wp_print_styles', 'print_emoji_styles');
 remove_action('admin_print_styles', 'print_emoji_styles');
+
+
+// Replace tags around images in the_content() with <div> tags
+function filter_ptags_on_images($content) {
+	return preg_replace('/<p[^>]*>\\s*?(<a .*?><img.*?><\\/a>|<img.*?>)?\\s*<\/p>/', '<div class="img">$1</div>', $content);
+}
+add_filter('the_content', 'filter_ptags_on_images');

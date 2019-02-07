@@ -11,14 +11,13 @@
 
 ?>
 
-	</div><!-- #content -->
+		</div><!-- #content -->
 
-	<footer id="footer">
-		
-	</footer><!-- #footer -->
-</div><!-- #page -->
+		<footer id="footer">
+			
+		</footer><!-- #footer -->
 
-<?php wp_footer(); ?>
+		<?php wp_footer(); ?>
 
-</body>
+	</body>
 </html>
