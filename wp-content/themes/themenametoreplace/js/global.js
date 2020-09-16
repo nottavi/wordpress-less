@@ -1,15 +1,10 @@
 (function($){
 	$(document).ready(function(){
 
-		// Wysiwyg img
+		// Wysiwyg img (classic editor)
 		$('.wysiwyg-content .img').each(function(){
 			$(this).addClass($(this).find('img').attr('class'));
 			$(this).find('img').attr('class', '');
-		});
-
-		// Menu mobile
-		$('#menu-burger').on('click', function () {
-			$('body').toggleClass('nav-open');
 		});
 		
 		// Scroll to

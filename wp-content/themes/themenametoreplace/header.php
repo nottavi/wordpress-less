@@ -42,7 +42,7 @@
 				<span class="bar bar-3"></span>
 			</div>
 
-			<nav id="nav" class="main-navigation" role="navigation">
+			<nav id="nav" role="navigation">
 				<?php wp_nav_menu(array(
 					'container' => false,
 					'menu_class' => '',
