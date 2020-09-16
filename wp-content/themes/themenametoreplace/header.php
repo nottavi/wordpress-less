@@ -10,14 +10,12 @@
  */
 
 ?><!DOCTYPE html>
-<html class="no-js" <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?>>
 	<head>
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11">
 		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-
-		<link rel="apple-touch-icon" href="<?php echo get_template_directory_uri(); ?>/apple-touch-icon.png">
 
 		<?php wp_head(); ?>
 	</head>
@@ -36,9 +34,13 @@
 					<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
 				<?php
 				endif; ?>
-			</div><!-- .site-branding -->
+			</div>
 
-			<button type="button" id="menu-burger" class="mobile-only" aria-controls="primary-menu">Menu</button>
+			<div id="menu-burger" aria-controls="primary-menu">
+				<span class="bar bar-1"></span>
+				<span class="bar bar-2"></span>
+				<span class="bar bar-3"></span>
+			</div>
 
 			<nav id="nav" class="main-navigation" role="navigation">
 				<?php wp_nav_menu(array(
@@ -47,9 +49,5 @@
 					'theme_location' => 'primary',
 					'depth' => 0,
 				)); ?>
-
-				<button type="button" id="menu-close" class="mobile-only">Fermer</button>
-			</nav><!-- #nav -->
-		</header><!-- #header -->
-
-		<div id="content" class="site-content">
+			</nav>
+		</header>

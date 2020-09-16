@@ -1,10 +1,11 @@
 /* ==========================================================================
-   Reset
-   ========================================================================== */
+Reset
+========================================================================== */
 
 *, *:before, *:after { margin: 0; padding: 0; box-sizing: border-box; }
 
 html, button, input, select, textarea { color: #000; font: normal 1em/1.2 Arial, Helvetica, sans-serif; }
+::-moz-selection { background: #b3d4fc; text-shadow: none; }
 ::selection { background: #b3d4fc; text-shadow: none; }
 
 h1, h2, h3, h4, h5, h6 { font-weight: normal; font-size: 100%; }
@@ -48,8 +49,8 @@ a, a:focus { text-decoration: none; outline: none; }
 ul { list-style: none; }
 
 /* ==========================================================================
-   Helper classes
-   ========================================================================== */
+Helper classes
+========================================================================== */
 
 .hidden { display: none !important; visibility: hidden; }
 
@@ -67,24 +68,10 @@ ul { list-style: none; }
     /* For Opera and <= IE9, we need to add unselectable="on" attribute onto each element */
     /* Check this site for more details: http://help.dottoro.com/lhwdpnva.php */ /* These user-select properties are inheritable, used to prevent text selection */
     -ms-user-select: none; /* From IE10 only */
+    -webkit-user-select: none;
+    -moz-user-select: none;
     user-select: none; /* Not valid CSS yet, as of July 2012 */
-
+    
     -webkit-user-drag: none; /* Prevents dragging of images/divs etc */
     user-drag: none;
 }
-
-/* ==========================================================================
-   Browser Upgrade Prompt
-   ========================================================================== */
-
-.browserupgrade {
-    padding: 5px 10px;
-    position: relative;
-    z-index: 9999;
-    color: #fff;
-    background: #c44;
-}
-
-    .browserupgrade a {
-        color: #ffc946;
-    }

@@ -44,7 +44,7 @@ function theme_name_to_replace_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'primary' => esc_html__( 'Primary', 'theme_name_to_replace' ),
+		'primary' => esc_html__( 'Menu principal', 'theme_name_to_replace' ),
 	) );
 
 	/*
@@ -123,9 +123,6 @@ add_action( 'widgets_init', 'theme_name_to_replace_widgets_init' );
 function theme_name_to_replace_scripts() {
 	wp_enqueue_style( 'theme_name_to_replace-style', get_stylesheet_uri() );
 
-	// modernizr
-	wp_register_script( 'modernizr', get_stylesheet_directory_uri() . '/js/modernizr-2.8.3.min.js', array(), '2.8.3', false );
-
 	// register stylesheet
 	wp_register_style( 'style', get_stylesheet_directory_uri() . '/css/style.css', array(), '', 'all' );
 
@@ -136,7 +133,6 @@ function theme_name_to_replace_scripts() {
 	wp_register_script( 'main', get_stylesheet_directory_uri() . '/js/main.min.js', array( 'jquery' ), '', true );
 
 	// enqueue styles and scripts
-	wp_enqueue_script( 'modernizr' );
 	wp_enqueue_style( 'style' );
 
 	wp_enqueue_script( 'main' );
@@ -151,8 +147,21 @@ remove_action('wp_print_styles', 'print_emoji_styles');
 remove_action('admin_print_styles', 'print_emoji_styles');
 
 
-// Replace tags around images in the_content() with <div> tags
+// Replace tags around images in the_content() with <div> tags (classic editor)
 function filter_ptags_on_images($content) {
 	return preg_replace('/<p[^>]*>\\s*?(<a .*?><img.*?><\\/a>|<img.*?>)?\\s*<\/p>/', '<div class="img">$1</div>', $content);
 }
 add_filter('the_content', 'filter_ptags_on_images');
+
+// Images sizes
+add_image_size( 'banner', 1920, 1080, false );
+
+// Page d'options
+if ( function_exists('acf_add_options_page') ) {
+	acf_add_options_page(array(
+		'page_title' 	=> 'Theme options',
+		'menu_slug' 	=> 'theme-options',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false
+	));
+}

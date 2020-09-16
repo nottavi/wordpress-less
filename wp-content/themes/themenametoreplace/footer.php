@@ -11,8 +11,6 @@
 
 ?>
 
-		</div><!-- #content -->
-
 		<footer id="footer">
 			
 		</footer><!-- #footer -->

@@ -9,56 +9,23 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+	<?php $image_url = get_template_directory_uri() . '/img/banniere-default.jpg'; ?>
+	
+	<div id="banniere" style="background-image: url(<?php echo $image_url; ?>);">
+		<h1 class="page-title"><?php _e('Erreur 404', 'theme_name_to_replace'); ?></h1>
+	</div>
 
-			<section class="error-404 not-found">
-				<header class="page-header">
-					<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'theme_name_to_replace' ); ?></h1>
-				</header><!-- .page-header -->
+	<section class="error-404">
+		<header class="page-header">
+			<h2 class="subtitle"><?php _e( 'Oups ! Cette pas n\'a pas pu être trouvée.', 'theme_name_to_replace' ); ?></h2>
+		</header>
 
-				<div class="page-content">
-					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'theme_name_to_replace' ); ?></p>
+		<div class="page-content">
+			<p><?php _e( 'Il semblerait que rien ne corresponde à cette adresse.', 'theme_name_to_replace' ); ?></p>
 
-					<?php
-						get_search_form();
-
-						the_widget( 'WP_Widget_Recent_Posts' );
-
-						// Only show the widget if site has multiple categories.
-						if ( theme_name_to_replace_categorized_blog() ) :
-					?>
-
-					<div class="widget widget_categories">
-						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'theme_name_to_replace' ); ?></h2>
-						<ul>
-						<?php
-							wp_list_categories( array(
-								'orderby'    => 'count',
-								'order'      => 'DESC',
-								'show_count' => 1,
-								'title_li'   => '',
-								'number'     => 10,
-							) );
-						?>
-						</ul>
-					</div><!-- .widget -->
-
-					<?php
-						endif;
-
-						/* translators: %1$s: smiley */
-						$archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'theme_name_to_replace' ), convert_smilies( ':)' ) ) . '</p>';
-						the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$archive_content" );
-
-						the_widget( 'WP_Widget_Tag_Cloud' );
-					?>
-
-				</div><!-- .page-content -->
-			</section><!-- .error-404 -->
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
+			<?php get_search_form(); ?>
+		</div>
+	</section>
 
 <?php
 get_footer();

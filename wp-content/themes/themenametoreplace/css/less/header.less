@@ -1,23 +1,81 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
+#header {
+    #menu-burger {
+        display: none;
+    }
+}
 
 
 
 /* ==========================================================================
-   Responsive
-   ========================================================================== */
+Responsive
+========================================================================== */
 
-@media only screen and (min-width: 480px) {
-	
+@media only screen and (max-width: 1400px) {
+    
+}
+
+@media only screen and (max-width: 1023px) {
+    #header {
+        #menu-burger {
+            display: block;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            z-index: 9500;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+
+            .bar {
+                display: block;
+                width: 32px;
+                height: 4px;
+                border-radius: 2px;
+                position: absolute;
+                top: 6px;
+                left: 4px;
+                background: blue;
+                transition: all .3s ease-in-out;
+            }
+
+            .bar-1 {
+                transform-origin: left center;
+            }
+
+            .bar-2 {
+                top: 18px;
+            }
+
+            .bar-3 {
+                top: auto;
+                bottom: 6px;
+                transform-origin: left center;
+            }
+        }
+
+        body.nav-open {
+            overflow: hidden;
+            
+            #header {            
+                #nav {
+                    transform: translateX(-100%);
+                }
+    
+                #menu-burger {
+                    .bar-1 {
+                        transform: translate(4px, 1px) rotate(45deg);
+                    }
+    
+                    .bar-2 {
+                        transform: scale(0);
+                        opacity: 0;
+                    }
+    
+                    .bar-3 {
+                        transform: translate(4px, 0) rotate(-45deg);
+                    }
+                }
+            }
+        }
+    }
 }

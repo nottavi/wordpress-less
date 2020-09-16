@@ -9,39 +9,52 @@
 
 get_header(); ?>
 
-	<section id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+	<?php
+		global $wp_query;
+		$count = $wp_query->found_posts;
+	?>
+	
+	<?php if ( has_post_thumbnail( $post->ID ) ) {
+		$image_url = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'banner' )[0];
+	} else {
+		$image_url = get_template_directory_uri() . '/img/banniere-default.jpg';
+	} ?>
+	
+	<div id="banniere" style="background-image: url(<?php echo $image_url; ?>);">
+		<?php if ( have_posts() ) : ?>
+			<?php echo $count; ?>
+			<?php if ( $count > 1 ): ?>
+				<?php _e('résultats pour votre recherche', 'theme_name_to_replace'); ?>
+			<?php else: ?>
+				<?php _e('résultat pour votre recherche', 'theme_name_to_replace'); ?>
+			<?php endif; ?>
 
-		<?php
-		if ( have_posts() ) : ?>
+			<?php if ( get_search_query() ): ?>
+				<span>« <?php echo get_search_query(); ?> »</span>
+			<?php endif; ?>
+		<?php else: ?>
+			<h1 class="page-title"><?php _e('Aucun résultat ne correspond à votre recherche', 'theme_name_to_replace'); ?></h1>
+		<?php endif; ?>
+	</div>
 
-			<header class="page-header">
-				<h1 class="page-title"><?php printf( esc_html__( 'Search Results for: %s', 'theme_name_to_replace' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
-			</header><!-- .page-header -->
+	<?php if ( have_posts() ) : ?>
+		<div class="search-list">
+			<?php while ( have_posts() ): the_post();
 
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) : the_post();
+				get_template_part( 'template-parts/preview', 'search' );
 
-				/**
-				 * Run the loop for the search to output the results.
-				 * If you want to overload this in a child theme then include a file
-				 * called content-search.php and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', 'search' );
+			endwhile; ?>
 
-			endwhile;
-
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif; ?>
-
-		</main><!-- #main -->
-	</section><!-- #primary -->
+			<?php if ( paginate_links() ): ?>
+				<div class="search-pagination">
+					<?php echo paginate_links(array(
+						'prev_text' => '<span class="icon icon-arrow-short-left"></span>',
+						'next_text' => '<span class="icon icon-arrow-short-right"></span>'
+					)); ?>
+				</div>
+			<?php endif; ?>
+		</div>
+	<?php endif; ?>
 
 <?php
 get_sidebar();
