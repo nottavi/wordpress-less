@@ -6,6 +6,19 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         
+        less: {
+            development: {
+                options: {
+                    compress: true,
+                    yuicompress: true,
+                    optimization: 2
+                },
+                files: {
+                    "css/theme.min.css": "css/less/style.less"
+                }
+            }
+        },
+        
         jshint: {
             all: ['js/global.js', 'js/js-parts/*.js']
         },
@@ -20,17 +33,6 @@ module.exports = function(grunt) {
             }
         },
         
-        watch: {
-            css: {
-                files: ['css/**/*.less'],
-                tasks: ['less']
-            },
-            js: {
-                files: ['js/**/*.js', '!js/theme.min.js'],
-                tasks: ['jshint', 'uglify']
-            }
-        },
-        
         imagemin: {
             dist: {
                 files: [{
@@ -42,20 +44,18 @@ module.exports = function(grunt) {
             }
         },
         
-        less: {
-            development: {
-                options: {
-                    compress: true,
-                    yuicompress: true,
-                    optimization: 2
-                },
-                files: {
-                    "css/theme.min.css": "css/less/style.less"
-                }
+        watch: {
+            css: {
+                files: ['css/**/*.less'],
+                tasks: ['less']
+            },
+            js: {
+                files: ['js/**/*.js', '!js/theme.min.js'],
+                tasks: ['jshint', 'uglify']
             }
         }
     });
     
-    grunt.registerTask('default', ['jshint', 'uglify']);
+    grunt.registerTask('default', ['less', 'jshint', 'uglify']);
     
 };
