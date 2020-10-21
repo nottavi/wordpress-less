@@ -164,3 +164,90 @@ if ( function_exists('acf_add_options_page') ) {
 		'redirect'		=> false
 	));
 }
+
+// Gutenberg allowed block types
+add_filter( 'allowed_block_types', 'theme_name_to_replace_abt' );
+
+function theme_name_to_replace_abt( $allowed_block_types ) {
+    return array(
+		'core/block',
+
+		// Common
+		'core/paragraph',
+		'core/image',
+		'core/heading',
+		'core/gallery',
+		'core/list',
+		'core/quote',
+		'core/audio',
+		'core/cover',
+		'core/file',
+		// 'core/video',
+
+		// Formatting
+		// 'core/table',
+		// 'core/verse',
+		// 'core/code',
+		// 'core/freeform — Classic',
+		// 'core/html — Custom HTML',
+		// 'core/preformatted',
+		// 'core/pullquote',
+
+		// Layout
+		// 'core/buttons',
+		// 'core/text-columns',
+		// 'core/media-text',
+		// 'core/more',
+		// 'core/nextpage',
+		// 'core/separator',
+		// 'core/spacer',
+
+		// Widgets
+		// 'core/shortcode',
+		// 'core/archives',
+		// 'core/categories',
+		// 'core/latest-comments',
+		// 'core/latest-posts',
+		// 'core/calendar',
+		// 'core/rss',
+		// 'core/search',
+		// 'core/tag-cloud',
+
+		// Embed
+		// 'core/embed',
+		// 'core-embed/twitter',
+		// 'core-embed/youtube',
+		// 'core-embed/facebook',
+		// 'core-embed/instagram',
+		// 'core-embed/wordpress',
+		// 'core-embed/soundcloud',
+		// 'core-embed/spotify',
+		// 'core-embed/flickr',
+		// 'core-embed/vimeo',
+		// 'core-embed/animoto',
+		// 'core-embed/cloudup',
+		// 'core-embed/collegehumor',
+		// 'core-embed/dailymotion',
+		// 'core-embed/funnyordie',
+		// 'core-embed/hulu',
+		// 'core-embed/imgur',
+		// 'core-embed/issuu',
+		// 'core-embed/kickstarter',
+		// 'core-embed/meetup-com',
+		// 'core-embed/mixcloud',
+		// 'core-embed/photobucket',
+		// 'core-embed/polldaddy',
+		// 'core-embed/reddit',
+		// 'core-embed/reverbnation',
+		// 'core-embed/screencast',
+		// 'core-embed/scribd',
+		// 'core-embed/slideshare',
+		// 'core-embed/smugmug',
+		// 'core-embed/speaker',
+		// 'core-embed/ted',
+		// 'core-embed/tumblr',
+		// 'core-embed/videopress',
+		// 'core-embed/wordpress-tv',
+
+    );
+}
